@@ -1,0 +1,13 @@
+<ul>
+    {% for note in notes %}
+    <li>
+        <form method="post" action="/edit/{{note.id}}">
+            <textarea name="content">{{ note.content }}</textarea>
+            <button type="submit">Save</button>
+        </form>
+        <a href="/delete/{{note.id}}">Delete</a>
+    </li>
+    {% else %}
+    <p>No notes found.</p>
+    {% endfor %}
+</ul>

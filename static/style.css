@@ -1,0 +1,44 @@
+body{
+    background-color: #222;
+}
+
+.login {
+    flex: 1;
+    margin-top: flex;
+    width: flex;
+    background: #000;
+    font-family: monospace;
+    font-size: 2vw;
+    color: rgb(0, 255, 0);
+    text-align: center;
+}
+
+.notes {
+    position: absolute;
+    overflow-y: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: flex;
+    background: #333;
+    color: rgb(255, 255, 0);
+    text-align: center;
+    font-family: monospace;
+}
+
+a{
+    text-decoration:none;
+    font-size: 1.5vw;
+    font-family: "Arial", monospace;
+    color: #fff;
+}
+
+li{
+    list-style-type: none;
+    display: inline-block;
+    margin: 15px;
+}
+
+img{
+    height: 50vh;
+}

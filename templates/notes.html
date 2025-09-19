@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Notes</title>
+    <script src="/static/script.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="notes">
+    <h2>Welcome to Your Notepad</h2>
+
+    <!-- Add Note -->
+    <form method="post">
+        <textarea name="content" placeholder="Write a new note..." required></textarea><br>
+        <button type="submit">Add Note</button>
+    </form>
+
+    <!-- Live Search -->
+    <input type="text" id="search" placeholder="Search notes...">
+
+    <h3>Your Notes</h3>
+    <div id="notes-container">
+        {% include "partials/notes_list.html" %}
+    </div>
+
+    <br>
+    <a href="/logout">Logout</a>
+</body>
+</html>
