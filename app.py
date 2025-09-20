@@ -9,10 +9,10 @@ app.secret_key = "supersecretkey"  # change in production
 # --- Database Connection ---
 def get_db():
     return mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASS"),
-        database=os.getenv("DB_NAME")
+        host="localhost",
+        user="root",        # change if needed 
+        password="Gabriel6@",        # change if needed
+        database="notepad"
     )
 
 # --- Routes ---
