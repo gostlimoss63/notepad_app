@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+import os
 import mysql.connector
+from flask import Flask, render_template, request, redirect, session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -8,10 +9,10 @@ app.secret_key = "supersecretkey"  # change in production
 # --- Database Connection ---
 def get_db():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",        # change if needed 
-        password="Gabriel6@",        # change if needed
-        database="notepad"
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASS"),
+        database=os.getenv("DB_NAME")
     )
 
 # --- Routes ---
