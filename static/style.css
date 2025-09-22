@@ -4,26 +4,29 @@ body{
 
 .login {
     flex: 1;
-    margin-top: flex;
     width: flex;
+    height: flex;
     background: #000;
     font-family: monospace;
     font-size: 2vw;
-    color: rgb(0, 255, 0);
+    color: #0f0;
     text-align: center;
 }
 
-.notes {
-    position: absolute;
-    overflow-y: auto;
-    top: 0;
-    left: 0;
-    width: 100%;
+.notepad {
+    width: flex;
     height: flex;
-    background: #333;
-    color: rgb(255, 255, 0);
+    background: #000;
+    color: #0f0;
     text-align: center;
     font-family: monospace;
+}
+
+.notes {
+    text-decoration:none;
+    font-size: 1.5vw;
+    font-family: "Arial", monospace;
+    color: #0f0;
 }
 
 a{
@@ -35,10 +38,17 @@ a{
 
 li{
     list-style-type: none;
-    display: inline-block;
+    display:inline-block ;
     margin: 15px;
 }
 
-img{
-    height: 50vh;
+textarea{
+    resize: none !important;
+    overflow: auto !important;
+    border: 0.2vh solid #0f0;   /* green border */
+    border-radius: 5px;          /* rounded corners */
+    background-color: #333;   /* light gray background */
+    color: #fff;                 /* text color */
+    padding: 5px;
+    outline: none;  
 }

@@ -4,14 +4,14 @@ from flask import Flask, render_template, request, redirect, session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # change in production
+app.secret_key = "0845baae42966387e765176cd0e384abf337f7acd2aa48d74ae1b006de3c8259"
 
 # --- Database Connection ---
 def get_db():
     return mysql.connector.connect(
         host="localhost",
-        user="root",        # change if needed 
-        password="Gabriel6@",        # change if needed
+        user="root",
+        password="Gabriel6@",
         database="notepad"
     )
 

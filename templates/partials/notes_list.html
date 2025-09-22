@@ -1,6 +1,6 @@
 <ul>
     {% for note in notes %}
-    <li>
+    <li  class="notes">
         <form method="post" action="/edit/{{note.id}}">
             <textarea name="content">{{ note.content }}</textarea>
             <button type="submit">Save</button>
