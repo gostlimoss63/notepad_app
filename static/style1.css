@@ -42,7 +42,7 @@ li{
     margin: 15px;
 }
 
-textarea{
+textarea, input{
     resize: none !important;
     overflow: auto !important;
     border: 0.2vh solid #0f0;   /* green border */

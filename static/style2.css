@@ -1,0 +1,113 @@
+/* === Global === */
+body {
+    background-color: #111;          /* darker background */
+    color: #0f0;                     /* matrix green text */
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Login Page === */
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 99vh;                   /* fill screen height */
+    background: #000;
+    font-size: 2vw;
+    color: #0f0;
+    text-align: center;
+    border: 2px solid #0f0;          /* green outline */
+    box-shadow: 0 0 20px #0f0;       /* glowing effect */
+}
+
+/* === Notepad Area === */
+.notepad {
+    min-height: 99vh;
+    background: #000;
+    color: #0f0;
+    text-align: center;
+    padding: 20px;
+    font-family: monospace;
+}
+
+/* === Navigation & Links === */
+.notes,a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: "Arial", monospace;
+    color: #0f0;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+a:hover, .notes:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #0f0;        /* glow on hover */
+}
+
+input{
+    resize: none !important;
+    overflow: auto !important;
+    width: 50%;
+    border: 2px solid #0f0;          /* glowing green border */
+    border-radius: 5px;
+    background-color: #111;
+    color: #0f0;
+    padding: 10px;
+    outline: none;
+    box-shadow: 0 0 6px #0f0;
+    
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: "Arial", monospace;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 10px 20px;
+}
+
+/* === Textarea (Notes) === */
+textarea {
+    resize: none !important;
+    overflow: auto !important;
+    width: 80%;
+    min-height: 200px;
+    border: 2px solid #0f0;          /* glowing green border */
+    border-radius: 10px;
+    background-color: #111;
+    color: #0f0;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 0 12px #0f0;
+}
+
+textarea:focus {
+    border-color: #fff;
+    box-shadow: 0 0 20px #0f0, 0 0 5px #fff;
+    background-color: #000;
+}
+
+/* === Buttons === */
+button {
+    background: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    margin: 10px;
+    font-family: monospace;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: #0f0;
+    color: #000;
+    text-shadow: none;
+}

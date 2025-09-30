@@ -22,10 +22,21 @@
     <div  class="notes">
         <input type="text" id="search" placeholder="Search notes...">
         <div id="notes-container">
-            {% include "partials/notes_list.html" %}
+            <h2>Completed Notes</h2>
+            <a href="{{ url_for('notes') }}">Back to Active Notes</a>
+            <ul>
+              {% for note in notes %}
+                <li>
+                  <input type="text" value="{{ note.title }}" readonly><br>
+                  <textarea readonly>{{ note.content }}</textarea>
+                  <form method="post" action="{{ url_for('delete_note', note_id=note.id) }}">
+                    <button type="submit">Delete</button>
+                  </form>
+                </li>
+              {% endfor %}
+            </ul>
         </div>
     </div>
-
     <br>
     <p>© 2025 Organize — Desenvolvido por Arthur Araújo e Gabriel Giovane</p>
 </body>

@@ -1,11 +1,16 @@
+<h3>Your Notes</h3>
+<a href="{{ url_for('completed_notes') }}">View Completed Notes</a>
 <ul>
     {% for note in notes %}
     <li  class="notes">
         <form method="post" action="/edit/{{note.id}}">
+            <input type="text" name="title" value="{{ note.title }}" placeholder="Note title" required><br>
             <textarea name="content">{{ note.content }}</textarea>
             <button type="submit">Save</button>
         </form>
-        <a href="/delete/{{note.id}}">Delete</a>
+        <form method="post" action="{{ url_for('mark_done', note_id=note.id) }}">
+            <button type="submit">Done</button>
+        </form>
     </li>
     {% else %}
     <p>No notes found.</p>

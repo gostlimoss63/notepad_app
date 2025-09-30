@@ -1,0 +1,115 @@
+/* === Global === */
+body {
+    background-color: #fdfdfc;         /* light paper background */
+    color: #222;                       /* dark ink-like text */
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Login Page === */
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 99vh;
+    background: #fffef8;
+    font-size: 1.5rem;
+    color: #222;
+    text-align: center;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* === Notepad Area === */
+.notepad {
+    min-height: 99vh;
+    background: #fdfdfc;
+    color: #222;
+    text-align: center;
+    padding: 20px;
+    font-family: Georgia, serif;
+}
+
+/* === Navigation & Links === */
+.notes, 
+a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #0056b3;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+a:hover, .notes:hover {
+    color: #003366;
+    text-shadow: 0 0 4px rgba(0, 86, 179, 0.4);
+}
+
+input{
+    resize: none;
+    overflow: auto;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+    line-height: 1.5;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: "Arial", monospace;
+    color: rgb(0, 0, 0);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 10px 20px;
+}
+
+/* === Textarea (Notes) === */
+textarea {
+    resize: none;
+    overflow: auto;
+    width: 80%;
+    min-height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #222;
+    padding: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    font-family: "Courier New", monospace;
+}
+
+textarea:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 6px rgba(0, 86, 179, 0.4);
+    background-color: #fff;
+}
+
+/* === Buttons === */
+button {
+    background: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: #003366;
+}

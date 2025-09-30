@@ -57,57 +57,63 @@ def register():
         return redirect(url_for("login"))
     return render_template("register.html")
 
-@app.route("/notes")
+@app.route("/notes", methods=["GET", "POST"])
 def notes():
     if "user_id" not in session:
         return redirect(url_for("login"))
-    
-    conn = get_db()
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM notes WHERE user_id=%s AND completed=FALSE", (session["user_id"],))
-    notes = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return render_template("notes.html", notes=notes)
 
-@app.route("/completed_notes")
-def completed_notes():
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+
+    # Add new note
+    if request.method == "POST" and "content" in request.form:
+        content = request.form["content"]
+        cursor.execute("INSERT INTO notes (user_id, content) VALUES (%s, %s)", (session["user_id"], content))
+        db.commit()
+
+    # Search functionality
+    search = request.args.get("search", "")
+    if search:
+        cursor.execute(
+            "SELECT * FROM notes WHERE user_id=%s AND content LIKE %s ORDER BY created_at DESC",
+            (session["user_id"], f"%{search}%")
+        )
+    else:
+        cursor.execute("SELECT * FROM notes WHERE user_id=%s ORDER BY created_at DESC", (session["user_id"],))
+
+    notes_list = cursor.fetchall()
+    db.close()
+    return render_template("notes.html", notes=notes_list, search=search)
+
+@app.route("/edit/<int:note_id>", methods=["POST"])
+def edit(note_id):
     if "user_id" not in session:
         return redirect(url_for("login"))
+
+    new_content = request.form["content"]
+
+    db = get_db()
+    cursor = db.cursor()
     
-    conn = get_db()
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM notes WHERE user_id=%s AND completed=TRUE", (session["user_id"],))
-    notes = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return render_template("completed_notes.html", notes=notes)
-
-@app.route("/done/<int:note_id>", methods=["POST"])
-def mark_done(note_id):
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute("UPDATE notes SET completed=TRUE WHERE id=%s AND user_id=%s", (note_id, session["user_id"]))
-    conn.commit()
-    cursor.close()
-    conn.close()
+    cursor.execute(
+        "UPDATE notes SET content=%s WHERE id=%s AND user_id=%s", 
+        (new_content, note_id, session["user_id"])
+    )
+    db.commit()
+    db.close()
     return redirect(url_for("notes"))
 
-
-@app.route("/delete/<int:note_id>", methods=["POST"])
-def delete_note(note_id):
+@app.route("/delete/<int:note_id>")
+def delete(note_id):
     if "user_id" not in session:
         return redirect(url_for("login"))
-    
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM notes WHERE id=%s AND user_id=%s AND completed=TRUE", (note_id, session["user_id"]))
-    conn.commit()
-    cursor.close()
-    return redirect(url_for("completed_notes"))
+
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM notes WHERE id=%s AND user_id=%s", (note_id, session["user_id"]))
+    db.commit()
+    db.close()
+    return redirect(url_for("notes"))
 
 @app.route("/logout")
 def logout():
@@ -119,10 +125,10 @@ def search_notes():
     if "user_id" not in session:
         return "Unauthorized", 401
 
+    search = request.args.get("q", "")
     db = get_db()
     cursor = db.cursor(dictionary=True)
-    
-    search = request.args.get("q", "")
+
     if search:
         cursor.execute(
             "SELECT * FROM notes WHERE user_id=%s AND content LIKE %s ORDER BY created_at DESC",
@@ -136,44 +142,6 @@ def search_notes():
 
     # Render just the notes part
     return render_template("partials/notes_list.html", notes=notes_list)
-
-@app.route("/notes", methods=["POST"])
-def add_note():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    title = request.form.get("title", "Untitled")
-    content = request.form["content"]
-
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute(
-        "INSERT INTO notes (user_id, title, content, completed) VALUES (%s, %s, %s, FALSE)",
-        (session["user_id"], title, content)
-    )
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return redirect(url_for("notes"))
-
-@app.route("/edit/<int:note_id>", methods=["POST"])
-def edit_note(note_id):
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    title = request.form.get("title", "Untitled")
-    content = request.form["content"]
-
-    conn = get_db()
-    cursor = conn.cursor()
-
-    cursor.execute(
-        "UPDATE notes SET title=%s, content=%s WHERE id=%s AND user_id=%s AND completed=FALSE",
-        (title, content, note_id, session["user_id"])
-    )
-    conn.commit()
-    cursor.close()
-    return redirect(url_for("notes"))
 
 if __name__ == "__main__":
     app.run(debug=True)
