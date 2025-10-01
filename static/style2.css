@@ -1,6 +1,6 @@
 /* === Global === */
 body {
-    background-color: #111;          /* darker background */
+    background-color: #000;          /* darker background */
     color: #0f0;                     /* matrix green text */
     font-family: monospace;
     margin: 0;
@@ -13,13 +13,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 99vh;                   /* fill screen height */
+    height: 99.6vh;                   /* fill screen height */
     background: #000;
     font-size: 2rem;
     color: #0f0;
     text-align: center;
-    border: 2px solid #0f0;          /* green outline */
-    box-shadow: 0 0 20px #0f0;       /* glowing effect */
+    border: 2px solid #0f0;         
+    box-shadow: 0 0 20px #0f0;     
 }
 
 /* === Notepad Area === */
@@ -34,6 +34,9 @@ body {
 
 /* === Navigation & Links === */
 .notes,a {
+    border-radius: 5px;
+    border: 1px solid #0f0;
+    box-shadow: 0 0 30px #090;
     text-decoration: none;
     font-size: 1rem;
     font-family: "Arial", monospace;
@@ -43,18 +46,19 @@ body {
 
 a:hover, .notes:hover {
     color: #fff;
-    text-shadow: 0 0 8px #0f0;        /* glow on hover */
+    text-shadow: 0 0 100px #0f0;      
 }
 
 input{
     resize: none !important;
     overflow: auto !important;
-    width: 50%;
-    border: 2px solid #0f0;          /* glowing green border */
+    width: 75%;
+    border: 2px solid #0f0;         
     border-radius: 5px;
     background-color: #111;
     color: #0f0;
     padding: 10px;
+    line-height: 1.5;
     outline: none;
     box-shadow: 0 0 6px #0f0;
     
@@ -67,7 +71,7 @@ input{
 li {
     list-style-type: none;
     display: inline-block;
-    margin: 10px 20px;
+    margin: 10px 10px;
 }
 
 /* === Textarea (Notes) === */
@@ -75,15 +79,15 @@ textarea {
     resize: none !important;
     overflow: auto !important;
     width: 80%;
-    min-height: 200px;
-    border: 2px solid #0f0;          /* glowing green border */
+    min-height: 150px;
+    border: 2px solid #0f0;       
     border-radius: 10px;
     background-color: #111;
     color: #0f0;
     padding: 10px;
     font-size: 1rem;
     outline: none;
-    box-shadow: 0 0 12px #0f0;
+    box-shadow: 0 0 10px #0f0;
 }
 
 textarea:focus {
@@ -94,6 +98,7 @@ textarea:focus {
 
 /* === Buttons === */
 button {
+    box-shadow: 0 0 10px #0f0;
     background: #000;
     color: #0f0;
     border: 2px solid #0f0;
