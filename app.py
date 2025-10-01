@@ -119,64 +119,36 @@ def search_notes():
 
     db = get_db()
     cursor = db.cursor(dictionary=True)
-    
+
     search = request.args.get("q", "")
+    completed = request.args.get("completed", "false").lower() == "true"
+
     if search:
         cursor.execute(
             """
             SELECT * FROM notes
-            WHERE user_id=%s AND (content LIKE %s OR title LIKE %s AND completed=FALSE)
+            WHERE user_id=%s AND (content LIKE %s OR title LIKE %s) AND completed=%s
             ORDER BY created_at DESC
             """,
-            (session["user_id"], f"%{search}%", f"%{search}%")
+            (session["user_id"], f"%{search}%", f"%{search}%", completed)
         )
     else:
         cursor.execute(
             """
             SELECT * FROM notes 
-            WHERE completed=FALSE AND user_id=%s 
+            WHERE user_id=%s AND completed=%s
             ORDER BY created_at DESC
             """,
-            (session["user_id"],)
+            (session["user_id"], completed)
         )
 
     notes_list = cursor.fetchall()
     db.close()
 
-    return render_template("partials/notes_list.html", notes=notes_list)
+    # Dynamically choose which partial to render
+    template = "partials/notes_completed.html" if completed else "partials/notes_list.html"
+    return render_template(template, notes=notes_list)
 
-@app.route("/search_completed_notes")
-def search_completed_notes():
-    if "user_id" not in session:
-        return "Unauthorized", 401
-
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-    
-    search = request.args.get("q", "")
-    if search:
-        cursor.execute(
-            """
-            SELECT * FROM notes
-            WHERE user_id=%s AND (content LIKE %s OR title LIKE %s AND completed=TRUE)
-            ORDER BY created_at DESC
-            """,
-            (session["user_id"], f"%{search}%", f"%{search}%")
-        )
-    else:
-        cursor.execute(
-            """
-            SELECT * FROM notes 
-            WHERE user_id=%s AND completed=TRUE 
-            ORDER BY created_at DESC
-            """,
-            (session["user_id"],)
-        )
-
-    notes_list = cursor.fetchall()
-    db.close()
-
-    return render_template("partials/notes_completed.html", notes=notes_list)
 
 @app.route("/notes", methods=["POST"])
 def add_note():

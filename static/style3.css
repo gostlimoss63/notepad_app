@@ -50,37 +50,37 @@ a:hover, .notes:hover {
 }
 
 input{
-    resize: none;
-    overflow: auto;
+    resize: none !important;
+    overflow: auto !important;
     width: 75%;
     border: 2px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
+    color: #000;
     padding: 10px;
     line-height: 1.5;
     outline: none;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 0 10px #0000005f;
 
     text-decoration: none;
     font-size: 1rem;
     font-family: "Arial", monospace;
-    color: rgb(0, 0, 0);
     transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 li {
     list-style-type: none;
     display: inline-block;
-    margin: 10px 20px;
+    margin: 10px 10px;
 }
 
 /* === Textarea (Notes) === */
 textarea {
-    resize: none;
-    overflow: auto;
+    resize: none !important;
+    overflow: auto !important;
     width: 80%;
-    min-height: 200px;
-    border: 1px solid #ccc;
+    min-height: 170px;
+    border: 2px solid #ccc;
     border-radius: 10px;
     background-color: #fff;
     color: #222;
@@ -88,21 +88,22 @@ textarea {
     font-size: 1rem;
     line-height: 1.5;
     outline: none;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow:0 0 10px rgba(0,0,0,0.05);
     font-family: "Courier New", monospace;
 }
 
 textarea:focus {
     border-color: #0056b3;
-    box-shadow: 0 0 6px rgba(0, 86, 179, 0.4);
+    box-shadow: 0 0 20px rgba(0, 86, 179, 0.4);
     background-color: #fff;
 }
 
 /* === Buttons === */
 button {
-    background: #0056b3;
+    box-shadow:0 0 10px rgba(0,0,0,0.05);
+    background: #0050bb;
     color: #fff;
-    border: none;
+    border: 2px solid #0060bb;
     padding: 10px 20px;
     margin: 10px;
     font-family: "Segoe UI", Arial, sans-serif;
@@ -114,4 +115,6 @@ button {
 
 button:hover {
     background: #003366;
+    color: #ccc;
+    text-shadow: none;
 }

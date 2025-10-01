@@ -7,7 +7,7 @@
 </head>
 <body class="notepad">
     <button id="toggle-theme">Switch Theme</button> 
-    <a href="/logout">Logout</a>
+    <button onclick="window.location.href='/logout'">Logout</button>
     <div  class="notes">
       <h2>Completed Notes</h2>
       <button onclick="window.location.href='{{ url_for('notes') }}'">Back to Active Notes</button>

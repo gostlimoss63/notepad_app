@@ -1,30 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("search");
     const notesContainer = document.getElementById("notes-container");
 
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value;
-        fetch(`/search_notes?q=${encodeURIComponent(query)}`)
-            .then(response => response.text())
-            .then(html => {
-                notesContainer.innerHTML = html;
-            });
-    });
+    // Handle active notes search
+    const activeSearch = document.getElementById("search");
+    if (activeSearch) {
+        activeSearch.addEventListener("input", () => {
+            const query = activeSearch.value;
+            fetch(`/search_notes?q=${encodeURIComponent(query)}&completed=false`)
+                .then(response => response.text())
+                .then(html => {
+                    notesContainer.innerHTML = html;
+                });
+        });
+    }
+
+    // Handle completed notes search
+    const completedSearch = document.getElementById("completed_search");
+    if (completedSearch) {
+        completedSearch.addEventListener("input", () => {
+            const query = completedSearch.value;
+            fetch(`/search_notes?q=${encodeURIComponent(query)}&completed=true`)
+                .then(response => response.text())
+                .then(html => {
+                    notesContainer.innerHTML = html;
+                });
+        });
+    }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("completed_search");
-    const notesContainer = document.getElementById("notes-container");
-
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value;
-        fetch(`/search_completed_notes?q=${encodeURIComponent(query)}`)
-            .then(response => response.text())
-            .then(html => {
-                notesContainer.innerHTML = html;
-            });
-    });
-});
 
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.getElementById("toggle-theme");
