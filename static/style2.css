@@ -15,7 +15,7 @@ body {
     align-items: center;
     height: 99vh;                   /* fill screen height */
     background: #000;
-    font-size: 2vw;
+    font-size: 2rem;
     color: #0f0;
     text-align: center;
     border: 2px solid #0f0;          /* green outline */
@@ -35,7 +35,7 @@ body {
 /* === Navigation & Links === */
 .notes,a {
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: "Arial", monospace;
     color: #0f0;
     transition: color 0.2s ease, text-shadow 0.2s ease;
@@ -59,7 +59,7 @@ input{
     box-shadow: 0 0 6px #0f0;
     
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: "Arial", monospace;
     transition: color 0.2s ease, text-shadow 0.2s ease;
 }

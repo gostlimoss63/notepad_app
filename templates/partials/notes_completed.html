@@ -1,0 +1,14 @@
+<ul>
+    {% for note in notes %}
+    <li>
+        <input type="text" value="{{ note.title }}" readonly><br>
+        <textarea readonly>{{ note.content }}</textarea>
+        
+        <form method="post" action="{{ url_for('delete_note', note_id=note.id) }}">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% else %}
+        <p>No notes found.</p>
+    {% endfor %}
+</ul>

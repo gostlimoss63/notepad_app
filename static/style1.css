@@ -8,7 +8,7 @@ body{
     height: flex;
     background: #000;
     font-family: monospace;
-    font-size: 2vw;
+    font-size: 1rem;
     color: #0f0;
     text-align: center;
 }
@@ -24,14 +24,14 @@ body{
 
 .notes {
     text-decoration:none;
-    font-size: 1.5vw;
+    font-size: 1rem;
     font-family: "Arial", monospace;
     color: #0f0;
 }
 
 a{
     text-decoration:none;
-    font-size: 1.5vw;
+    font-size: 1rem;
     font-family: "Arial", monospace;
     color: #fff;
 }

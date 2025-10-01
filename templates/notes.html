@@ -6,38 +6,41 @@
     <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
 </head>
 <body class="notepad">
-    <button id="toggle-theme">Switch Theme</button> 
-    <a href="/logout">Logout</a>
+    <button id="toggle-theme">Switch Theme</button>
+    <button onclick="window.location.href='/logout'">Logout</button>
 
     <h2>Welcome to Your Notepad</h2>
 
     <div  class="notes">
         <form method="post">
-            <input type="text" name="title" placeholder="Note title" required><br>
+            <input type="text" name="title" placeholder="Note title" required><br><br>
             <textarea name="content" placeholder="Write a new note..." required></textarea><br>
             <button type="submit">Add Note</button>
         </form>
     </div>
-    
+    <p><br><br><br></p>
     <div  class="notes">
+        <h3>Your Notes</h3>
+        <button onclick="window.location.href='{{ url_for('completed_notes') }}'">View Completed Notes</button>
         <input type="text" id="search" placeholder="Search notes...">
         <div id="notes-container">
-            <h3>Your Notes</h3>
-            <a href="{{ url_for('completed_notes') }}">View Completed Notes</a>
             <ul>
                 {% for note in notes %}
-                <li  class="notes">
-                    <form method="post" action="/edit/{{note.id}}">
-                        <input type="text" name="title" value="{{ note.title }}" placeholder="Note title" required><br>
+                <li class="notes">
+                    <form id="edit-form-{{ note.id }}" method="post" action="{{ url_for('edit_note', note_id=note.id) }}" class="note-edit">
+                        <input type="text" name="title" value="{{ note.title }}" placeholder="Note title" required><br><br>
                         <textarea name="content">{{ note.content }}</textarea>
-                        <button type="submit">Save</button>
                     </form>
-                    <form method="post" action="{{ url_for('mark_done', note_id=note.id) }}">
-                        <button type="submit">Done</button>
-                    </form>
+
+                    <form id="done-form-{{ note.id }}" method="post" action="{{ url_for('mark_done', note_id=note.id) }}" class="note-done"></form>
+
+                    <div class="button-row">
+                        <button type="submit" form="edit-form-{{ note.id }}" class="btn btn-save">Save</button>
+                        <button type="submit" form="done-form-{{ note.id }}" class="btn btn-done">Done</button>
+                    </div>
                 </li>
                 {% else %}
-                <p>No notes found.</p>
+                    <p>No notes found.</p>
                 {% endfor %}
             </ul>
         </div>

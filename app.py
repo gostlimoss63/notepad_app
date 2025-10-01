@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = "0845baae42966387e765176cd0e384abf337f7acd2aa48d74ae1b006de3c8259"
 
-# --- Database Connection ---
 def get_db():
     return mysql.connector.connect(
         host="localhost",
@@ -15,7 +14,6 @@ def get_db():
         database="notepad"
     )
 
-# --- Routes ---
 @app.route("/")
 def index():
     if "user_id" in session:
@@ -125,17 +123,60 @@ def search_notes():
     search = request.args.get("q", "")
     if search:
         cursor.execute(
-            "SELECT * FROM notes WHERE user_id=%s AND content LIKE %s ORDER BY created_at DESC",
-            (session["user_id"], f"%{search}%")
+            """
+            SELECT * FROM notes
+            WHERE user_id=%s AND (content LIKE %s OR title LIKE %s AND completed=FALSE)
+            ORDER BY created_at DESC
+            """,
+            (session["user_id"], f"%{search}%", f"%{search}%")
         )
     else:
-        cursor.execute("SELECT * FROM notes WHERE user_id=%s ORDER BY created_at DESC", (session["user_id"],))
+        cursor.execute(
+            """
+            SELECT * FROM notes 
+            WHERE completed=FALSE AND user_id=%s 
+            ORDER BY created_at DESC
+            """,
+            (session["user_id"],)
+        )
 
     notes_list = cursor.fetchall()
     db.close()
 
-    # Render just the notes part
     return render_template("partials/notes_list.html", notes=notes_list)
+
+@app.route("/search_completed_notes")
+def search_completed_notes():
+    if "user_id" not in session:
+        return "Unauthorized", 401
+
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    
+    search = request.args.get("q", "")
+    if search:
+        cursor.execute(
+            """
+            SELECT * FROM notes
+            WHERE user_id=%s AND (content LIKE %s OR title LIKE %s AND completed=TRUE)
+            ORDER BY created_at DESC
+            """,
+            (session["user_id"], f"%{search}%", f"%{search}%")
+        )
+    else:
+        cursor.execute(
+            """
+            SELECT * FROM notes 
+            WHERE user_id=%s AND completed=TRUE 
+            ORDER BY created_at DESC
+            """,
+            (session["user_id"],)
+        )
+
+    notes_list = cursor.fetchall()
+    db.close()
+
+    return render_template("partials/notes_completed.html", notes=notes_list)
 
 @app.route("/notes", methods=["POST"])
 def add_note():

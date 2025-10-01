@@ -15,7 +15,7 @@ body {
     align-items: center;
     height: 99vh;
     background: #fffef8;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #222;
     text-align: center;
     border: 1px solid #ccc;
@@ -60,7 +60,7 @@ input{
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
 
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: "Arial", monospace;
     color: rgb(0, 0, 0);
     transition: color 0.2s ease, text-shadow 0.2s ease;

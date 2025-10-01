@@ -13,6 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("completed_search");
+    const notesContainer = document.getElementById("notes-container");
+
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value;
+        fetch(`/search_completed_notes?q=${encodeURIComponent(query)}`)
+            .then(response => response.text())
+            .then(html => {
+                notesContainer.innerHTML = html;
+            });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.getElementById("toggle-theme");
     const themeLink = document.getElementById("theme-style");
 

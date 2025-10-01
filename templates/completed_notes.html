@@ -8,34 +8,23 @@
 <body class="notepad">
     <button id="toggle-theme">Switch Theme</button> 
     <a href="/logout">Logout</a>
-
-    <h2>Welcome to Your Notepad</h2>
-
     <div  class="notes">
-        <form method="post">
-            <input type="text" name="title" placeholder="Note title" required><br>
-            <textarea name="content" placeholder="Write a new note..." required></textarea><br>
-            <button type="submit">Add Note</button>
-        </form>
-    </div>
-    
-    <div  class="notes">
-        <input type="text" id="search" placeholder="Search notes...">
-        <div id="notes-container">
-            <h2>Completed Notes</h2>
-            <a href="{{ url_for('notes') }}">Back to Active Notes</a>
-            <ul>
-              {% for note in notes %}
-                <li>
-                  <input type="text" value="{{ note.title }}" readonly><br>
-                  <textarea readonly>{{ note.content }}</textarea>
-                  <form method="post" action="{{ url_for('delete_note', note_id=note.id) }}">
-                    <button type="submit">Delete</button>
-                  </form>
-                </li>
-              {% endfor %}
-            </ul>
-        </div>
+      <h2>Completed Notes</h2>
+      <button onclick="window.location.href='{{ url_for('notes') }}'">Back to Active Notes</button>
+      <input type="text" id="completed_search" placeholder="Search notes...">
+      <div id="notes-container">
+        <ul>
+          {% for note in notes %}
+            <li>
+              <input type="text" value="{{ note.title }}" readonly><br>
+              <textarea readonly>{{ note.content }}</textarea>
+              <form method="post" action="{{ url_for('delete_note', note_id=note.id) }}">
+                <button type="submit">Delete</button>
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
     <br>
     <p>© 2025 Organize — Desenvolvido por Arthur Araújo e Gabriel Giovane</p>
