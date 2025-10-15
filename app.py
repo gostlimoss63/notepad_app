@@ -188,5 +188,11 @@ def edit_note(note_id):
     cursor.close()
     return redirect(url_for("notes"))
 
+@app.route("/credits")
+def credits():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    return render_template("credits.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

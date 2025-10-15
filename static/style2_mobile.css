@@ -118,3 +118,138 @@ button:hover {
     color: #000;
     text-shadow: none;
 }
+
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* make layout fit smaller screens but keep style */
+  .login, .notepad {
+    width: 95%;
+    margin: 0 auto;
+    padding: 0rem;
+    box-sizing: border-box;
+    font-size: 1.5rem; 
+  }
+
+  /* textareas and inputs fit screen width */
+  textarea, input[type="text"], input[type="password"] {
+    width: 95%;
+    max-width: 100%;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  /* keep Save / Done buttons side by side but wrap if needed */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5rem;
+  }
+
+  li {
+    display: block;
+    margin: 0px 0;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  button{
+    padding: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* make layout fit smaller screens but keep style */
+  .login, .notepad {
+    width: 95%;
+    margin: 0 auto;
+    padding: 0rem;
+    box-sizing: border-box;
+  }
+
+  /* textareas and inputs fit screen width */
+  textarea, input[type="text"], input[type="password"] {
+    width: 95%;
+    max-width: 100%;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  /* keep Save / Done buttons side by side but wrap if needed */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10.5rem;
+  }
+
+  button {
+    width: 48%;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  textarea {
+    min-height: 20vh;
+    font-size: 0.95rem;
+  }
+
+  .login, .notepad {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  li.notes {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* make layout fit smaller screens but keep style */
+  .login, .notepad {
+    width: 95%;
+    margin: 0 auto;
+    padding: 0rem;
+    box-sizing: border-box;
+  }
+
+  /* textareas and inputs fit screen width */
+  textarea, input[type="text"], input[type="password"] {
+    width: 95%;
+    max-width: 100%;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  /* keep Save / Done buttons side by side but wrap if needed */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10.5rem;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  input, textarea {
+    font-size: 0.9rem;
+  }
+}
+

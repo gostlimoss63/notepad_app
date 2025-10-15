@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = "0845baae42966387e765176cd0e384abf337f7acd2aa48d74ae1b006de3c8259"
 
-# --- Database Connection ---
 def get_db():
     return mysql.connector.connect(
         host="localhost",
@@ -15,7 +14,6 @@ def get_db():
         database="notepad"
     )
 
-# --- Routes ---
 @app.route("/")
 def index():
     if "user_id" in session:

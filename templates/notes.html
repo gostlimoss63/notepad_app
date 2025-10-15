@@ -3,10 +3,11 @@
 <head>
     <title>My Notes</title>
     <script src="/static/script.js" defer></script>
-    <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <link id="theme-link" rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="notepad">
-    <button id="toggle-theme">Switch Theme</button>
+    <button id="theme-switch">Switch Theme</button> 
     <button onclick="window.location.href='/logout'">Logout</button>
 
     <h2>Welcome to Your Notepad</h2>
@@ -47,6 +48,6 @@
     </div>
 
     <br>
-    <p>© 2025 Organize — Desenvolvido por Arthur Araújo e Gabriel Giovane</p>
+    <a href="/credits">© 2025 Organize — Desenvolvido por Arthur Araújo e Gabriel Giovane</a>
 </body>
 </html>
